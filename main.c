@@ -84,16 +84,16 @@ void enter_pseudo(char *pseudo) {
 int main() {
     srand(time(NULL));
     initialisation_allegro();
-    BITMAP *buffer = create_bitmap(SCREEN_W, SCREEN_H);;
-    BITMAP *source_ECE_World_map = load_image("ressources/images/ECE_World_map.bmp");
-    BITMAP *source_Chemin_joueur_possible = load_image("ressources/images/Chemin_possible.bmp");
-    BITMAP *Personnage = load_image("ressources/images/personnage.bmp");
+    BITMAP *buffer = create_bitmap(SCREEN_W, SCREEN_H);
+    BITMAP *source_ECE_World_map = load_bitmap("ressources/images/ECE_World_map.bmp",NULL);
+    BITMAP *source_Chemin_joueur_possible = load_bitmap("ressources/images/Chemin_possible.bmp",NULL);
+    BITMAP *Personnage = load_bitmap("ressources/images/personnage.bmp",NULL);
     int resultat_roue1=0,resultat_roue2=0;
     int resultat_guitar1=0,resultat_guitar2=0;
     int resultat_ballon1=0,resultat_ballon2=0;
     int resultat_memoire1=0,resultat_memoire2=0;
     //on redimensionne l'image (Chemin_possible)
-    BITMAP *Changemant = load_image("ressources/images/changement_de_joueur.bmp");
+    BITMAP *PlayerSwap = load_bitmap("ressources/images/changement_de_joueur.bmp",NULL);
     BITMAP *Chemin_joueur_possible = create_bitmap(SCREEN_W, SCREEN_H);
     stretch_blit(source_Chemin_joueur_possible, Chemin_joueur_possible, 0, 0, source_Chemin_joueur_possible->w, source_Chemin_joueur_possible->h, 0, 0, SCREEN_W, SCREEN_H);
     destroy_bitmap(source_Chemin_joueur_possible);
@@ -130,7 +130,7 @@ int main() {
     textout_centre_ex(screen, font, "Pseudo du joueur 1 enregistré:", SCREEN_W / 2, SCREEN_H / 2 + 10, makecol(255, 255, 255), -1);
     textout_centre_ex(screen, font, joueur.pseudo_j1, SCREEN_W / 2, SCREEN_H / 2 + 30, makecol(255, 255, 255), -1);
     rest(1000);
-    stretch_blit(Changemant, screen, 0, 0, Changemant->w, Changemant->h, 0, 0, SCREEN_W, SCREEN_H);
+    stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
     rest(2500);
     clear(screen);
     textout_centre_ex(screen, font, "Entrez votre pseudo joueur 2:", SCREEN_W / 2, SCREEN_H / 2 - 10, makecol(255, 255, 255), -1);
@@ -169,7 +169,7 @@ int main() {
         }
         if (getpixel(Chemin_joueur_possible, personnage.x+32, personnage.y+1+64) == makecol(255, 255, 255 ) && key[KEY_ENTER]){
             jackpot(&joueur,0);
-            stretch_blit(Changemant, screen, 0, 0, Changemant->w, Changemant->h, 0, 0, SCREEN_W, SCREEN_H);
+            stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(2500);
             jackpot(&joueur,1);
         }
@@ -179,7 +179,7 @@ int main() {
         if (getpixel(Chemin_joueur_possible, personnage.x+32, personnage.y-1+64) == makecol(255, 0, 0 ) && key[KEY_ENTER]){
             clear(screen);
             resultat_roue1 = jeu_RoueFor();
-            stretch_blit(Changemant, screen, 0, 0, Changemant->w, Changemant->h, 0, 0, SCREEN_W, SCREEN_H);
+            stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(2500);
             clear(screen);
             resultat_roue2 = jeu_RoueFor();
@@ -201,7 +201,7 @@ int main() {
         if (getpixel(Chemin_joueur_possible, personnage.x+32, personnage.y-1+64) == makecol(0, 0, 255 ) && key[KEY_ENTER]){
             clear(screen);
             resultat_guitar1=jeu_Guitar();
-            stretch_blit(Changemant, screen, 0, 0, Changemant->w, Changemant->h, 0, 0, SCREEN_W, SCREEN_H);
+            stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(2500);
             clear(screen);
             resultat_guitar2=jeu_Guitar();
@@ -228,7 +228,7 @@ int main() {
             rest(5000);
             clear(screen);
             resultat_ballon1=jeu_ballon();
-            stretch_blit(Changemant, screen, 0, 0, Changemant->w, Changemant->h, 0, 0, SCREEN_W, SCREEN_H);
+            stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(2500);
             clear(screen);
             resultat_ballon2=jeu_ballon();
@@ -257,7 +257,7 @@ int main() {
             rest(5000);
             clear(screen);
             resultat_memoire1=jeu_de_memoire();
-            stretch_blit(Changemant, screen, 0, 0, Changemant->w, Changemant->h, 0, 0, SCREEN_W, SCREEN_H);
+            stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(2500);
             clear(screen);
             resultat_memoire2=jeu_de_memoire();
