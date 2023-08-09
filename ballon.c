@@ -60,7 +60,7 @@ void mouvement(t_ballons *ballon){
 int jeu_ballon(){
     BITMAP *page;
     page= create_bitmap(SCREEN_W,SCREEN_H);
-    BITMAP *source=load_bitmap("ressources/images/fond_ballon.bmp",NULL);
+    BITMAP *source=load_bitmap("ressources/Ball/fond_ballon.bmp",NULL);
     BITMAP *imagefond = create_bitmap(SCREEN_W, SCREEN_H);
     int vie[NB_BALLON]; // Si le ballon est eclate sa case sera 0 sinon 1
     int terminer=1; // Tant que ce n'est pas termine, 1 sinon 0
@@ -70,13 +70,13 @@ int jeu_ballon(){
     int valeur_temps;
     for(int i=0;i<NB_BALLON;i++){
         ballons[i]=creer_ballon(); // initiation des ballons
-        if(ballons[i]->couleur==0) imageballon[i]=load_bitmap("ressources/images/ballon_rouge.bmp",NULL);
-        if(ballons[i]->couleur==1) imageballon[i]=load_bitmap("ressources/images/ballon_orange.bmp",NULL);
-        if(ballons[i]->couleur==2) imageballon[i]=load_bitmap("ressources/images/ballon_jaune.bmp",NULL);
-        if(ballons[i]->couleur==3) imageballon[i]=load_bitmap("ressources/images/ballon_vert.bmp",NULL);
-        if(ballons[i]->couleur==4) imageballon[i]=load_bitmap("ressources/images/ballon_aqua.bmp",NULL);
-        if(ballons[i]->couleur==5) imageballon[i]=load_bitmap("ressources/images/ballon_bleu.bmp",NULL);
-        if(ballons[i]->couleur==6) imageballon[i]=load_bitmap("ressources/images/ballon_violet.bmp",NULL);
+        if(ballons[i]->couleur==0) imageballon[i]=load_bitmap("ressources/Ball/ballon_rouge.bmp",NULL);
+        if(ballons[i]->couleur==1) imageballon[i]=load_bitmap("ressources/Ball/ballon_orange.bmp",NULL);
+        if(ballons[i]->couleur==2) imageballon[i]=load_bitmap("ressources/Ball/ballon_jaune.bmp",NULL);
+        if(ballons[i]->couleur==3) imageballon[i]=load_bitmap("ressources/Ball/ballon_vert.bmp",NULL);
+        if(ballons[i]->couleur==4) imageballon[i]=load_bitmap("ressources/Ball/ballon_aqua.bmp",NULL);
+        if(ballons[i]->couleur==5) imageballon[i]=load_bitmap("ressources/Ball/ballon_bleu.bmp",NULL);
+        if(ballons[i]->couleur==6) imageballon[i]=load_bitmap("ressources/Ball/ballon_violet.bmp",NULL);
         vie[i]=1;
     }
 

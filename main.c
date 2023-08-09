@@ -162,10 +162,10 @@ int main() {
         }
         rest(10);
         if (getpixel(Chemin_joueur_possible, personnage.x+32, personnage.y+1+64) == makecol(255, 0, 255 ) && key[KEY_ENTER]){
-            jeu_ne_pas_toucher_les_bords_electrique(&joueur);
+            //jeu_ne_pas_toucher_les_bords_electrique(&joueur);
         }
         if (getpixel(Chemin_joueur_possible, personnage.x+32, personnage.y+1+64) == makecol(0, 255, 0 ) && key[KEY_ENTER]){
-            jeu_Snake(&joueur);
+            //jeu_Snake(&joueur);
         }
         if (getpixel(Chemin_joueur_possible, personnage.x+32, personnage.y+1+64) == makecol(255, 255, 255 ) && key[KEY_ENTER]){
             jackpot(&joueur,0);
@@ -177,7 +177,7 @@ int main() {
             jeudeloie(&joueur);
         }
         if (getpixel(Chemin_joueur_possible, personnage.x+32, personnage.y-1+64) == makecol(255, 0, 0 ) && key[KEY_ENTER]){
-            clear(screen);
+           /* clear(screen);
             resultat_roue1 = jeu_RoueFor();
             stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(2500);
@@ -187,6 +187,7 @@ int main() {
                 allegro_message("Le joueur 1 a reçu un meilleur score. Il remporte un ticket du joueur 2.");
                 joueur.ticket_j1+=1;
                 joueur.ticket_j2-=1;
+
             }
             if(resultat_roue1>resultat_roue2){
                 allegro_message("Le joueur 2 a reçu un meilleur score. Il remporte un ticket du joueur 1.");
@@ -196,10 +197,11 @@ int main() {
             if(resultat_roue1==resultat_roue2){
                 allegro_message("Les deux joueurs ont reçu le même score. Personne ne gagne de ticket.");
             }
-
+            */
         }
         if (getpixel(Chemin_joueur_possible, personnage.x+32, personnage.y-1+64) == makecol(0, 0, 255 ) && key[KEY_ENTER]){
-            clear(screen);
+
+            /* clear(screen);
             resultat_guitar1=jeu_Guitar();
             stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(2500);
@@ -218,6 +220,7 @@ int main() {
             if(resultat_guitar1==resultat_guitar2){
                 allegro_message("Les deux joueurs ont reçu le même score. Personne ne gagne de ticket.");
             }
+            */
         }
 
 

@@ -47,8 +47,9 @@ void affichage(BITMAP *buffer, int tableau_de_point[21], BITMAP *background){
     }
     blit(buffer, screen, 0, 0, 0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
-
+/*
 void jeu_ne_pas_toucher_les_bords_electrique(t_joueur* joueur){
+
     int tableau_de_point[21];
     time_t temps_debut, temps_fin, temps_j1, temps_j2;
 
@@ -56,8 +57,8 @@ void jeu_ne_pas_toucher_les_bords_electrique(t_joueur* joueur){
     BITMAP *buffer = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
     int blanc = makecol(255, 255, 255);
 
-    BITMAP *source_background = load_image("ressources/images/eclairerel2.bmp");
-    BITMAP *Changemant = load_image("ressources/images/changement_de_joueur.bmp");
+    BITMAP *source_background = load_bitmap("ressources/images/eclairerel2.bmp",NULL);
+    BITMAP *PlayerSwap = load_bitmap("ressources/images/changement_de_joueur.bmp", NULL);
     //on redimensionne l'image (eclaire)
     BITMAP *background = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
     stretch_blit(source_background, background, 0, 0, source_background->w, source_background->h, 0, 0, background->w, background->h);
@@ -108,7 +109,7 @@ void jeu_ne_pas_toucher_les_bords_electrique(t_joueur* joueur){
         clear(buffer);
         clear(screen);
         if (i == 0){
-            stretch_blit(Changemant, screen, 0, 0, Changemant->w, Changemant->h, 0, 0, SCREEN_W, SCREEN_H);
+            stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(5000);
         }
     }
@@ -145,5 +146,6 @@ void jeu_ne_pas_toucher_les_bords_electrique(t_joueur* joueur){
     destroy_bitmap(buffer);
     destroy_bitmap(background);
     destroy_bitmap(source_background);
-    destroy_bitmap(Changemant);
+    destroy_bitmap(PlayerSwap);
 }
+*/

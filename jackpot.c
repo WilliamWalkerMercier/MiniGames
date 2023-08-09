@@ -5,12 +5,12 @@ void jackpot(t_joueur* joueur, int tour) {
     //Son et image
     SAMPLE *sonManche = load_sample("ressources/son/Casino/banditmanchot.wav");
     BITMAP *page = create_bitmap(SCREEN_W, SCREEN_H);
-    BITMAP *ImgIntro = load_bitmap("ressources/images/Casino/introCasino.bmp", NULL);
-    BITMAP *Imgfond = load_bitmap("ressources/images/Casino/fondCasino.bmp", NULL);
-    BITMAP *Imgmanche = load_bitmap("ressources/images/Casino/MancheCasino.bmp", NULL);
-    BITMAP *ImgSymbole = load_bitmap("ressources/images/Casino/symboleCasino.bmp", NULL);
-    BITMAP *win = load_bitmap("ressources/images/Casino/youWin.bmp", NULL);
-    BITMAP *lose = load_bitmap("ressources/images/Casino/youLose.bmp", NULL);
+    BITMAP *ImgIntro = load_bitmap("ressources/Casino/introCasino.bmp", NULL);
+    BITMAP *Imgfond = load_bitmap("ressources/Casino/fondCasino.bmp", NULL);
+    BITMAP *Imgmanche = load_bitmap("ressources/Casino/MancheCasino.bmp", NULL);
+    BITMAP *ImgSymbole = load_bitmap("ressources/Casino/symboleCasino.bmp", NULL);
+    BITMAP *win = load_bitmap("ressources/Casino/youWin.bmp", NULL);
+    BITMAP *lose = load_bitmap("ressources/Casino/youLose.bmp", NULL);
     int image1 = 0, image2 = 0, image3 = 0, symboleRandom, nbLancers = 0, vWin = 0;
     sImgCoordonnees tabimage[3];
     blit(ImgIntro, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_W);
