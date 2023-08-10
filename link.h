@@ -1,82 +1,82 @@
-
-//
-// Created by Moi on 27/04/2023.
-//
-
 #ifndef PROJET_LINK_H
 #define PROJET_LINK_H
 
 #endif //PROJET_LINK_H
+
+
+
+//Define
 #define MAX_PSEUDO 40
-//Librairie-----------------------------------------------------------
+
+
+//Libraries-----------------------------------------------------------
 #include <allegro.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-//Structure-------------------------------------------------------
-typedef struct ImageCoordonnees{
-    int indexImage;
+//Structure------------------------------------------------------------
+
+typedef struct ImageCoordinates{
     int PosX;
     int PosY;
-}sImgCoordonnees;
+}sImgCoordinates;
 
-typedef struct joueur{
-    int ticket_j1;
-    int ticket_j2;
-    char pseudo_j1[MAX_PSEUDO];
-    char pseudo_j2[MAX_PSEUDO];
-    int Oie_j1, Oie_j2;
-    int Eclaire_j1, Eclaire_j2;
-    int Snake_j1, Snake_j2;
-    int Memoire_j1, Memoire_j2;
-    int ballon_j1, ballon_j2;
-    int Jackpot_j1, Jackpot_j2;
-    int RoueF_j1, RoueF_j2;
-    int Guitar_j1, Guitar_j2;
-}t_joueur;
+typedef struct Player{
+    int NbOfTickets;
+    char Username[MAX_PSEUDO];
+    int Goose;
+    int Lightning;
+    int Memory;
+    int Ball;
+    int CasinoRoyal;
+}sPlayer;
 
-typedef struct JoueurCoordonnees{
+typedef struct PlayerCoordinates{
     int posX;
     int posY;
     BITMAP *image;
-}sJoueurCoordonnees;
+}sPlayerCoordinates;
 
-typedef struct personnage{
-    BITMAP* bas[4];
-    BITMAP* gauche[4];
-    BITMAP* droite[4];
-    BITMAP* haut[4];
+typedef struct Character{
+    BITMAP* Down[4];
+    BITMAP* Left[4];
+    BITMAP* Right[4];
+    BITMAP* UP[4];
     int x, y;
     int direction;
     int frame;
-    int en_deplacement;
-}t_personnage;
+    int Moving;
+}sCharacter;
+
+
 
 
 //Prototype-----------------------------------------------------------
-void initialisation_allegro();
-void separer_bitmap_personnage(t_personnage* personnage, BITMAP* bitmap);
-void dessiner_personnage(t_personnage* personnage, BITMAP* buffer);
+void AllegroInitialisation();
+void SplitCharacterBitmap(sCharacter* personnage, BITMAP* bitmap);
+void DrawCharacter(sCharacter* personnage, BITMAP* buffer);
+void CharacterUpdate(sCharacter* personnage, BITMAP *Chemin_joueur_possible);
+void UsernameInput(char *pseudo);
 
 
     //Jackpot
-    void jackpot(t_joueur* joueur,int tour);
+    void jackpot(sPlayer* joueur, int tour);
 
     //Jeu de l'oie
-    void jeudeloie(t_joueur* joueur);
-    void verifieCase(sJoueurCoordonnees* prJoueur1,sJoueurCoordonnees*prJoueur2);
-    void verifieDeplacement(sJoueurCoordonnees* prJoueur,int de);
+    void jeudeloie(sPlayer* joueur);
+    void verifieCase(sPlayerCoordinates* prJoueur1, sPlayerCoordinates*prJoueur2);
+    void verifieDeplacement(sPlayerCoordinates* prJoueur, int de);
 
     //Ballon
     int jeu_ballon();
 
     //Snake
-    void jeu_Snake(t_joueur* joueur);
+    void jeu_Snake(sPlayer* joueur);
 
 
     //Ne pas toucher les bords
-    void jeu_ne_pas_toucher_les_bords_electrique(t_joueur* joueur);
+    void jeu_ne_pas_toucher_les_bords_electrique(sPlayer* joueur);
 
     //Memory
     int jeu_de_memoire();
@@ -88,4 +88,11 @@ void dessiner_personnage(t_personnage* personnage, BITMAP* buffer);
     int jeu_RoueFor();
 
 
-
+/*
+ Jeu gardé:
+    -Casino
+    -Ballon
+    -Oie
+    -Electricite
+    -Memory
+ */

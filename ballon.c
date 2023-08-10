@@ -4,10 +4,10 @@
 
 
 typedef struct Ballons{
-    int coord_x1; // pixel coin haut gauche
-    int coord_x2; // pixel coin haut droit
-    int coord_y1; // pixel coin bas gauche
-    int coord_y2; // pixel coin bas droit
+    int coord_x1; // pixel coin UP Left
+    int coord_x2; // pixel coin UP droit
+    int coord_y1; // pixel coin Down Left
+    int coord_y2; // pixel coin Down droit
     int dep_x; // Pour controler le changement de coordonnees
     int dep_y;
     int couleur; //Nous allons faire 7 couleurs différentes

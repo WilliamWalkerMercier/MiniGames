@@ -1,61 +1,61 @@
 #include "link.h"
 
 //Sous-programmes
-void separer_bitmap_personnage(sCharacter* personnage, BITMAP* bitmap)
+void SplitCharacterBitmap(sCharacter* personnage, BITMAP* bitmap)
 {
     for (int j = 0; j < 4; j++) {
-        personnage->bas[j] = create_sub_bitmap(bitmap, j * bitmap->w/4, 0 * bitmap->h/4, bitmap->w/4, bitmap->h/4);
-        personnage->gauche[j] = create_sub_bitmap(bitmap, j * bitmap->w/4, 1 * bitmap->h/4, bitmap->w/4, bitmap->h/4);
-        personnage->droite[j] = create_sub_bitmap(bitmap, j * bitmap->w/4, 2 * bitmap->h/4, bitmap->w/4, bitmap->h/4);
-        personnage->haut[j] = create_sub_bitmap(bitmap, j * bitmap->w/4, 3 * bitmap->h/4, bitmap->w/4, bitmap->h/4);
+        personnage->Down[j] = create_sub_bitmap(bitmap, j * bitmap->w / 4, 0 * bitmap->h / 4, bitmap->w / 4, bitmap->h / 4);
+        personnage->Left[j] = create_sub_bitmap(bitmap, j * bitmap->w / 4, 1 * bitmap->h / 4, bitmap->w / 4, bitmap->h / 4);
+        personnage->Right[j] = create_sub_bitmap(bitmap, j * bitmap->w / 4, 2 * bitmap->h / 4, bitmap->w / 4, bitmap->h / 4);
+        personnage->UP[j] = create_sub_bitmap(bitmap, j * bitmap->w / 4, 3 * bitmap->h / 4, bitmap->w / 4, bitmap->h / 4);
     }
 }
 
-void dessiner_personnage(sCharacter* personnage, BITMAP* buffer){
+void DrawCharacter(sCharacter* personnage, BITMAP* buffer){
     BITMAP* frame;
     switch (personnage->direction) {
         case 0:
-            frame = personnage->bas[personnage->frame];
+            frame = personnage->Down[personnage->frame];
             break;
         case 1:
-            frame = personnage->gauche[personnage->frame];
+            frame = personnage->Left[personnage->frame];
             break;
         case 2:
-            frame = personnage->droite[personnage->frame];
+            frame = personnage->Right[personnage->frame];
             break;
         case 3:
-            frame = personnage->haut[personnage->frame];
+            frame = personnage->UP[personnage->frame];
             break;
     }
     masked_blit(frame, buffer, 0, 0, personnage->x, personnage->y, frame->w, frame->h);
 }
-void maj_personnage(sCharacter* personnage, BITMAP *Chemin_joueur_possible){
+void CharacterUpdate(sCharacter* personnage, BITMAP *Chemin_joueur_possible){
     int vitesse = 1;
-    personnage->en_deplacement = 0;
+    personnage->Moving = 0;
     if (key[KEY_UP] && getpixel(Chemin_joueur_possible, personnage->x+32, personnage->y-1+64) == makecol(0, 0, 0)) {
         personnage->y -= vitesse;
         personnage->direction = 3;
-        personnage->en_deplacement = 1;
+        personnage->Moving = 1;
     }
     if (key[KEY_DOWN] && getpixel(Chemin_joueur_possible, personnage->x+32, personnage->y+1+64) == makecol(0, 0, 0)) {
         personnage->y += vitesse;
         personnage->direction = 0;
-        personnage->en_deplacement = 1;
+        personnage->Moving = 1;
     }
     if (key[KEY_LEFT] && getpixel(Chemin_joueur_possible, personnage->x-1+32, personnage->y+64) == makecol(0, 0, 0)) {
         personnage->x -= vitesse;
         personnage->direction = 1;
-        personnage->en_deplacement = 1;
+        personnage->Moving = 1;
     }
     if (key[KEY_RIGHT] && getpixel(Chemin_joueur_possible, personnage->x+1+32, personnage->y+64) == makecol(0, 0, 0)) {
         personnage->x += vitesse;
         personnage->direction = 2;
-        personnage->en_deplacement = 1;
+        personnage->Moving = 1;
     }
 }
 
 
-void enter_pseudo(char *pseudo) {
+void UsernameInput(char *pseudo) {
     clear_keybuf();
     int i = 0;
     while (1) {

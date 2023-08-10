@@ -3,7 +3,7 @@
 //
 #include "link.h"
 
-void initialisation_allegro(){
+void AllegroInitialisation(){
     allegro_init();
     install_sound(DIGI_AUTODETECT, MIDI_NONE, NULL);
     install_keyboard();

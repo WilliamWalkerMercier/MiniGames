@@ -5,15 +5,15 @@
 #include "link.h"
 
 
-void jeudeloie(t_joueur* joueur) {
+void jeudeloie(sPlayer* joueur) {
     int compteurTour=0; int de=0; int tourJoueur=0;
     BITMAP *SpritePersonnage1 = load_bitmap("ressources/oie/ninja1.bmp", NULL);
     BITMAP *SpritePersonnage2= load_bitmap("ressources/oie/elfe1.bmp",NULL);
     BITMAP *Imgfond = load_bitmap("ressources/oie/jeudeloie.bmp", NULL);
     BITMAP *ImgIntro = load_bitmap("ressources/oie/introjeuoie.bmp", NULL);
 
-    sJoueurCoordonnees tabJoueur[5];
-    sJoueurCoordonnees previous;
+    sPlayerCoordinates tabJoueur[5];
+    sPlayerCoordinates previous;
     for (int i=0;i<2;i++){
         tabJoueur[i].posX=0;
         tabJoueur[i].posY=0;
@@ -52,18 +52,18 @@ void jeudeloie(t_joueur* joueur) {
             allegro_message("Joueur Suivant");
         }
     }
-    allegro_message("Bravo le jour %d remporte un ticket et l'autre joueur en perd un",tourJoueur+1);
+    allegro_message("Bravo le jour %d remporte un ticket et l'autre Player en perd un",tourJoueur+1);
     if(tourJoueur==0){
-        joueur->ticket_j1++;
+        joueur->NbOfTickets++;
         joueur->ticket_j2--;
-        joueur->Oie_j1++;
+        joueur->Goose++;
         joueur->Oie_j2--;
     }
     if(tourJoueur==1){
         joueur->ticket_j2++;
-        joueur->ticket_j1--;
+        joueur->NbOfTickets--;
         joueur->Oie_j2++;
-        joueur->Oie_j1--;
+        joueur->Goose--;
 
     }
     destroy_bitmap(SpritePersonnage1);
@@ -73,7 +73,7 @@ void jeudeloie(t_joueur* joueur) {
 }
 
 
-void verifieCase(sJoueurCoordonnees* prJoueur1,sJoueurCoordonnees*prJoueur2){
+void verifieCase(sPlayerCoordinates* prJoueur1, sPlayerCoordinates*prJoueur2){
     int de=0;int de2=0;int xTemp=0;int yTemp=0;
     if(prJoueur1->posX==2 && prJoueur1->posY==0){//Mage
         allegro_message("Le mage te donne un coup de pouce");
@@ -148,7 +148,7 @@ void verifieCase(sJoueurCoordonnees* prJoueur1,sJoueurCoordonnees*prJoueur2){
         prJoueur1->posY=0;
     }
 }
-void verifieDeplacement(sJoueurCoordonnees* prJoueur,int de){
+void verifieDeplacement(sPlayerCoordinates* prJoueur, int de){
     prJoueur->posX += de;
 
     while(prJoueur->posX >= 7){

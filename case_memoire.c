@@ -3,10 +3,10 @@
 #define NB_RECT 9
 
 typedef struct Rectangle {
-    int coord_x1; // pixel coin haut gauche
-    int coord_x2; // pixel coin haut droit
-    int coord_y1; // pixel coin bas gauche
-    int coord_y2; // pixel coin bas droit
+    int coord_x1; // pixel coin UP Left
+    int coord_x2; // pixel coin UP droit
+    int coord_y1; // pixel coin Down Left
+    int coord_y2; // pixel coin Down droit
 } t_rect;
 
 t_rect *creer_rect(int i) {

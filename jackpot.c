@@ -1,7 +1,7 @@
 
 #include "link.h"
 
-void jackpot(t_joueur* joueur, int tour) {
+void jackpot(sPlayer* joueur, int tour) {
     //Son et image
     SAMPLE *sonManche = load_sample("ressources/son/Casino/banditmanchot.wav");
     BITMAP *page = create_bitmap(SCREEN_W, SCREEN_H);
@@ -12,7 +12,7 @@ void jackpot(t_joueur* joueur, int tour) {
     BITMAP *win = load_bitmap("ressources/Casino/youWin.bmp", NULL);
     BITMAP *lose = load_bitmap("ressources/Casino/youLose.bmp", NULL);
     int image1 = 0, image2 = 0, image3 = 0, symboleRandom, nbLancers = 0, vWin = 0;
-    sImgCoordonnees tabimage[3];
+    sImgCoordinates tabimage[3];
     blit(ImgIntro, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_W);
     rest(8000);
     blit(Imgfond, page, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
@@ -63,14 +63,14 @@ void jackpot(t_joueur* joueur, int tour) {
             rest(1000);
             allegro_message("Vous avez gagné 3 tickets");
             if (tour == 0) {
-                joueur->ticket_j1 += 3;
+                joueur->NbOfTickets += 3;
                 joueur->ticket_j2--;
                 joueur->Jackpot_j1++;
                 joueur->Jackpot_j2--;
             }
             if (tour == 1) {
                 joueur->ticket_j2 += 3;
-                joueur->ticket_j1--;
+                joueur->NbOfTickets--;
                 joueur->Jackpot_j2++;
                 joueur->Jackpot_j1--;
             }
@@ -78,7 +78,7 @@ void jackpot(t_joueur* joueur, int tour) {
             rest(1000);
             allegro_message("Vous avez perdu 1 tickets");
             if (tour == 0) {
-                joueur->ticket_j1--;
+                joueur->NbOfTickets--;
                 joueur->Jackpot_j1--;
                 joueur->Jackpot_j2++;
             }

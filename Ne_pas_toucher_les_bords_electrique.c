@@ -48,7 +48,7 @@ void affichage(BITMAP *buffer, int tableau_de_point[21], BITMAP *background){
     blit(buffer, screen, 0, 0, 0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 /*
-void jeu_ne_pas_toucher_les_bords_electrique(t_joueur* joueur){
+void jeu_ne_pas_toucher_les_bords_electrique(sPlayer* Player){
 
     int tableau_de_point[21];
     time_t temps_debut, temps_fin, temps_j1, temps_j2;
@@ -115,31 +115,31 @@ void jeu_ne_pas_toucher_les_bords_electrique(t_joueur* joueur){
     }
 
     if (temps_j1 < temps_j2){
-        joueur->ticket_j1++;
-        joueur->ticket_j2--;
-        joueur->Eclaire_j1++;
-        joueur->Eclaire_j2--;
-        allegro_message("Le joueur 1 a été le plus rapide. Il remporte un ticket du joueur 2.");
+        Player->NbOfTickets++;
+        Player->ticket_j2--;
+        Player->Eclaire_j1++;
+        Player->Eclaire_j2--;
+        allegro_message("Le Player 1 a été le plus rapide. Il remporte un ticket du Player 2.");
     }
     if (temps_j1 > temps_j2){
-        joueur->ticket_j1--;
-        joueur->ticket_j2++;
-        joueur->Eclaire_j1--;
-        joueur->Eclaire_j2++;
-        allegro_message("Le joueur 2 a été le plus rapide. Il remporte un ticket du joueur 1.");
+        Player->NbOfTickets--;
+        Player->ticket_j2++;
+        Player->Eclaire_j1--;
+        Player->Eclaire_j2++;
+        allegro_message("Le Player 2 a été le plus rapide. Il remporte un ticket du Player 1.");
     }
     if (temps_j1 == temps_j2 && temps_j1 != 9999999999){
-        joueur->ticket_j1++;
-        joueur->ticket_j2++;
-        joueur->Eclaire_j1++;
-        joueur->Eclaire_j2++;
+        Player->NbOfTickets++;
+        Player->ticket_j2++;
+        Player->Eclaire_j1++;
+        Player->Eclaire_j2++;
         allegro_message("Les 2 joueurs ont le même temps. Ils gagnent tout les 2 un ticket");
     }
     if (temps_j1 == temps_j2 && temps_j1 == 9999999999){
-        joueur->ticket_j1--;
-        joueur->ticket_j2--;
-        joueur->Eclaire_j1--;
-        joueur->Eclaire_j2--;
+        Player->NbOfTickets--;
+        Player->ticket_j2--;
+        Player->Eclaire_j1--;
+        Player->Eclaire_j2--;
         allegro_message("Les 2 joueurs sont sorti du terrain. Ils perdent tout les 2 un ticket");
     }
 
