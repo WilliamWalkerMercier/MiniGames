@@ -2,6 +2,7 @@
 #include "link.h"
 
 void jackpot(sPlayer* joueur, int tour) {
+    /*
     //Son et image
     SAMPLE *sonManche = load_sample("ressources/son/Casino/banditmanchot.wav");
     BITMAP *page = create_bitmap(SCREEN_W, SCREEN_H);
@@ -98,5 +99,5 @@ void jackpot(sPlayer* joueur, int tour) {
     destroy_bitmap(ImgSymbole);
     destroy_bitmap(win);
     destroy_bitmap(lose);
-    destroy_sample(sonManche);
+    destroy_sample(sonManche);*/
 }

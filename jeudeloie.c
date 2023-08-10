@@ -6,6 +6,7 @@
 
 
 void jeudeloie(sPlayer* joueur) {
+    /*
     int compteurTour=0; int de=0; int tourJoueur=0;
     BITMAP *SpritePersonnage1 = load_bitmap("ressources/oie/ninja1.bmp", NULL);
     BITMAP *SpritePersonnage2= load_bitmap("ressources/oie/elfe1.bmp",NULL);
@@ -70,9 +71,10 @@ void jeudeloie(sPlayer* joueur) {
     destroy_bitmap(SpritePersonnage2);
     destroy_bitmap(Imgfond);
     destroy_bitmap(ImgIntro);
+     */
 }
 
-
+/*
 void verifieCase(sPlayerCoordinates* prJoueur1, sPlayerCoordinates*prJoueur2){
     int de=0;int de2=0;int xTemp=0;int yTemp=0;
     if(prJoueur1->posX==2 && prJoueur1->posY==0){//Mage
@@ -167,7 +169,7 @@ void verifieDeplacement(sPlayerCoordinates* prJoueur, int de){
         prJoueur->posY = 5;
     }
 }
-
+*/
 
 
 

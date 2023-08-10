@@ -118,3 +118,33 @@ int jeu_ballon(){
     destroy_bitmap(page);
     return valeur_temps;
 }
+/*
+clear(screen);
+            BITMAP *regle_du_jeu= load_bitmap("Ressources/images/Regle_ballon.bmp",NULL);
+            blit(regle_du_jeu, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+            rest(5000);
+            clear(screen);
+            BallGameResultP1=jeu_ballon();
+            stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
+            rest(2500);
+            clear(screen);
+            BallGameResultP2=jeu_ballon();
+            if(BallGameResultP1 < BallGameResultP2){
+                allegro_message("%s a été le plus rapide. Il remporte un ticket du %s.", joueur.Username, joueur.pseudo_j2);
+                joueur.NbOfTickets+=1;
+                joueur.ballon_j1+=1;
+                joueur.ticket_j2-=1;
+                joueur.ballon_j2-=1;
+            }
+            if(BallGameResultP1 > BallGameResultP2){
+                allegro_message("%s a été le plus rapide. Il remporte un ticket du %s.",joueur.pseudo_j2,joueur.Username);
+                joueur.NbOfTickets-=1;
+                joueur.ballon_j1-=1;
+                joueur.ticket_j2+=1;
+                joueur.ballon_j2+=1;
+            }
+            if(BallGameResultP1 == BallGameResultP2){
+                allegro_message("Les 2 joueurs ont le même temps. Ils gagnent rien et perdent rien");
+            }
+        }
+ */
