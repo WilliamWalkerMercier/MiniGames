@@ -7,6 +7,8 @@
 
 //Define
 #define MAX_PSEUDO 40
+#define Green makecol(0, 200, 0)
+#define White makecol(255, 255, 255)
 
 
 //Libraries-----------------------------------------------------------
@@ -61,38 +63,25 @@ void UsernameInput(char *pseudo);
 
 
     //Jackpot
-    void jackpot(sPlayer* joueur, int tour);
+    void jackpot(sPlayer* joueur, int tour,BITMAP *PlayerSwap);
 
     //Jeu de l'oie
-    void jeudeloie(sPlayer* joueur);
+    void jeudeloie(sPlayer* joueur,BITMAP *PlayerSwap);
     void verifieCase(sPlayerCoordinates* prJoueur1, sPlayerCoordinates*prJoueur2);
     void verifieDeplacement(sPlayerCoordinates* prJoueur, int de);
 
     //Ballon
-    int jeu_ballon();
+    int jeu_ballon(BITMAP *PlayerSwap);
 
     //Snake
-    void jeu_Snake(sPlayer* joueur);
+    void jeu_Snake(sPlayer* joueur,BITMAP *PlayerSwap);
 
 
     //Ne pas toucher les bords
-    void jeu_ne_pas_toucher_les_bords_electrique(sPlayer* joueur);
+    void ElectricityGame(sPlayer prTab[2], BITMAP *PlayerSwap);
 
     //Memory
     int jeu_de_memoire();
 
-    //Guitar Hero
-    int jeu_Guitar();
-
-    //Jeu de la fortune
-    int jeu_RoueFor();
 
 
-/*
- Jeu gardé:
-    -Casino
-    -Ballon
-    -Oie
-    -Electricite
-    -Memory
- */
