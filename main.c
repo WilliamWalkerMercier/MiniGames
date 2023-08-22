@@ -133,7 +133,7 @@ int main() {
         //Electrical Game
         if (getpixel(Chemin_joueur_possible, Character.x + 32, Character.y + 1 + 64) == makecol(255, 0, 255) &&
             key[KEY_ENTER]) {
-            //jeu_ne_pas_toucher_les_bords_electrique(&Player);
+            ElectricityGame(PlayerList, PlayerSwap);
         }
         //In the previous version, it was a Snake Game but we will change it later
         if (getpixel(Chemin_joueur_possible, Character.x + 32, Character.y + 1 + 64) == makecol(0, 255, 0) &&
@@ -143,12 +143,12 @@ int main() {
         //Casino Royal Party but we only have for now the jackpot Game
         if (getpixel(Chemin_joueur_possible, Character.x + 32, Character.y + 1 + 64) == makecol(255, 255, 255) &&
             key[KEY_ENTER]) {
-            jackpot(PlayerList, 0);
+            //jackpot(PlayerList, 0);
         }
         //Goose Game
         if (getpixel(Chemin_joueur_possible, Character.x + 32, Character.y + 1 + 64) == makecol(100, 100, 100) &&
             key[KEY_ENTER]) {
-            jeudeloie(PlayerList);
+            //GooseGame(PlayerList);
         }
         //In the previous version, it was a turn the wheel game but we will change it
         if (getpixel(Chemin_joueur_possible, Character.x + 32, Character.y - 1 + 64) == makecol(255, 0, 0) &&
