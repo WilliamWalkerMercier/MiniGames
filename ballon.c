@@ -57,7 +57,7 @@ void mouvement(t_ballons *ballon){
     if(ballon->coord_y2>519)ballon->dep_y-=2*ballon->dep_y;
 }
 
-int jeu_ballon(){
+void BalloonGame(BITMAP *PlayerSwap){
     BITMAP *page;
     page= create_bitmap(SCREEN_W,SCREEN_H);
     BITMAP *source=load_bitmap("ressources/Ball/fond_ballon.bmp",NULL);
@@ -116,7 +116,6 @@ int jeu_ballon(){
     }
     destroy_bitmap(imagefond);
     destroy_bitmap(page);
-    return valeur_temps;
 }
 /*
 clear(screen);
@@ -128,7 +127,7 @@ clear(screen);
             stretch_blit(PlayerSwap, screen, 0, 0, PlayerSwap->w, PlayerSwap->h, 0, 0, SCREEN_W, SCREEN_H);
             rest(2500);
             clear(screen);
-            BallGameResultP2=jeu_ballon();
+            BallGameResultP2=BalloonGame();
             if(BallGameResultP1 < BallGameResultP2){
                 allegro_message("%s a été le plus rapide. Il remporte un ticket du %s.", joueur.Username, joueur.pseudo_j2);
                 joueur.NbOfTickets+=1;

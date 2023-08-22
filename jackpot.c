@@ -1,7 +1,7 @@
 
 #include "link.h"
 
-void jackpot(sPlayer* joueur, int tour) {
+void jackpot(sPlayer* joueur, int tour,BITMAP *PlayerSwap){
     /*
     //Son et image
     SAMPLE *sonManche = load_sample("ressources/son/Casino/banditmanchot.wav");

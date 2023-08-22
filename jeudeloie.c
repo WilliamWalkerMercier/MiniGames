@@ -5,12 +5,12 @@
 #include "link.h"
 
 
-void jeudeloie(sPlayer* joueur) {
+void GooseGame(sPlayer* joueur, BITMAP *PlayerSwap) {
     /*
     int compteurTour=0; int de=0; int tourJoueur=0;
     BITMAP *SpritePersonnage1 = load_bitmap("ressources/oie/ninja1.bmp", NULL);
     BITMAP *SpritePersonnage2= load_bitmap("ressources/oie/elfe1.bmp",NULL);
-    BITMAP *Imgfond = load_bitmap("ressources/oie/jeudeloie.bmp", NULL);
+    BITMAP *Imgfond = load_bitmap("ressources/oie/GooseGame.bmp", NULL);
     BITMAP *ImgIntro = load_bitmap("ressources/oie/introjeuoie.bmp", NULL);
 
     sPlayerCoordinates tabJoueur[5];
