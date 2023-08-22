@@ -5,7 +5,7 @@
 #define SCREEN_HEIGHT 700
 
 
-void point_alleatoire(int tableau_de_point[21]){
+void RandomDot(int tableau_de_point[21]){
     for (int i = 0; i < 21; ++i) {
         tableau_de_point[i] = 50 + rand()%581;
         for (int j = 0; j < i ; ++j) {
@@ -16,7 +16,7 @@ void point_alleatoire(int tableau_de_point[21]){
     }
 }
 
-void tri(int tableau_de_point[21]){
+void Sort(int tableau_de_point[21]){
     int temp;
 
     for (int i = 1; i < 21; i += 2) {
@@ -30,7 +30,7 @@ void tri(int tableau_de_point[21]){
     }
 }
 
-void affichage(BITMAP *buffer, int tableau_de_point[21], BITMAP *background){
+void PathPrint(BITMAP *buffer, int tableau_de_point[21], BITMAP *background){
     blit(background, buffer, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     for (int i = 0; i < 21; ++i) {
         if ( i == 0){
@@ -47,63 +47,81 @@ void affichage(BITMAP *buffer, int tableau_de_point[21], BITMAP *background){
     }
     blit(buffer, screen, 0, 0, 0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
-/*
-void jeu_ne_pas_toucher_les_bords_electrique(sPlayer* Player){
 
-    int tableau_de_point[21];
-    time_t temps_debut, temps_fin, temps_j1, temps_j2;
+void ElectricityGame(sPlayer prTab[2], BITMAP *PlayerSwap){
 
-    /// Déclaration de bitmap buffer / bitmap dimage
+    //Variable Declaration
+    int tabDot[21];
+    time_t StartTime, EndTime, Player1Time, Player2Time,ActualTime;
+
+   //Bitmap Declaration
     BITMAP *buffer = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
-    int blanc = makecol(255, 255, 255);
+    BITMAP *source_background = load_bitmap("ressources/ElectricityGame/LightningBackground.bmp",NULL);
 
-    BITMAP *source_background = load_bitmap("ressources/images/eclairerel2.bmp",NULL);
-    BITMAP *PlayerSwap = load_bitmap("ressources/images/changement_de_joueur.bmp", NULL);
-    //on redimensionne l'image (eclaire)
+    //Resize lightning image
     BITMAP *background = create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
     stretch_blit(source_background, background, 0, 0, source_background->w, source_background->h, 0, 0, background->w, background->h);
 
-
+    //Show the cursor on the screen
     show_mouse(screen);
 
-    point_alleatoire(tableau_de_point);
+    //Generates randomly the dot tab
+    RandomDot(tabDot);
 
-    tri(tableau_de_point);
+    //Sort the dottab
+    Sort(tabDot);
 
+    //Game Loop
     for (int i = 0; i < 2; ++i) {
 
-        rectfill(buffer, 0, 0, 50, 50, makecol(0, 200, 0));
+        //Draw the start platform
+        rectfill(buffer, 0, 0, 50, 50, Green);
         blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-        while (getpixel(buffer, mouse_x, mouse_y) != makecol(0, 200, 0)) {}
+        while (getpixel(buffer, mouse_x, mouse_y) != (Green)) {
+        }
         rest(500);
         clear(screen);
         clear(buffer);
 
-        affichage(buffer, tableau_de_point, background);
-        affichage(buffer, tableau_de_point, background);
-        affichage(buffer, tableau_de_point, background);
+        //Show the Path
+        PathPrint(buffer, tabDot, background);
+        PathPrint(buffer, tabDot, background);
+        PathPrint(buffer, tabDot, background);
 
-        temps_debut = time(NULL);
-        temps_fin = time(NULL);
+        //Initialisation of the time
+        StartTime = time(NULL);
+        ActualTime=time(NULL);
 
-        while (getpixel(buffer, mouse_x, mouse_y) == blanc) { affichage(buffer, tableau_de_point, background); }
-        temps_fin = time(NULL);
 
-        if (getpixel(buffer, mouse_x, mouse_y) == makecol(0, 200, 0)) {
+        //Loop that verify if the mouse cursor in on the white path
+        while (getpixel(buffer, mouse_x, mouse_y) == White && ActualTime-StartTime<=60000) {
+            PathPrint(buffer, tabDot, background);
+            ActualTime=time(NULL);
+        }
+        EndTime = time(NULL);
+
+        //Check if the player has arrived at the end of the game
+        if (getpixel(buffer, mouse_x, mouse_y) == Purple) {
             if (i == 0){
-                temps_j1 = temps_fin - temps_debut;
+                Player1Time = EndTime - StartTime;
+                //allegro_message("Player 1 time is %ld",Player1Time);
             }
             if (i == 1){
-                temps_j2 = temps_fin - temps_debut;
+                Player2Time = EndTime - StartTime;
+                //allegro_message("Player 2 time is %ld",Player2Time);
             }
         } else{
-            if (i == 0){
-                temps_j1 = 9999999999;
+            //Condition when the player doesn't get to the end
+            if (i==0){
+                Player1Time = EndTime;
+                //allegro_message("Player 1 time is %ld",Player1Time);
+
             }
             if (i == 1){
-                temps_j2 = 9999999999;
+                Player2Time =EndTime;
+                //allegro_message("Player 2 time is %ld",Player2Time);
             }
         }
         clear(buffer);
@@ -113,39 +131,27 @@ void jeu_ne_pas_toucher_les_bords_electrique(sPlayer* Player){
             rest(5000);
         }
     }
-
-    if (temps_j1 < temps_j2){
-        Player->NbOfTickets++;
-        Player->ticket_j2--;
-        Player->Eclaire_j1++;
-        Player->Eclaire_j2--;
-        allegro_message("Le Player 1 a été le plus rapide. Il remporte un ticket du Player 2.");
+    //Attributes the ticket for each player
+    if (Player1Time < Player2Time){
+        prTab[0].NbOfTickets++;
+        prTab[1].NbOfTickets--;
+        prTab[0].Lightning++;
+        prTab[1].Lightning--;
+        allegro_message("Player 1 went the furthest and was the fastest. He wins a ticket");
     }
-    if (temps_j1 > temps_j2){
-        Player->NbOfTickets--;
-        Player->ticket_j2++;
-        Player->Eclaire_j1--;
-        Player->Eclaire_j2++;
-        allegro_message("Le Player 2 a été le plus rapide. Il remporte un ticket du Player 1.");
+    if (Player1Time > Player2Time){
+        prTab[1].NbOfTickets++;
+        prTab[0].NbOfTickets--;
+        prTab[1].Lightning++;
+        prTab[0].Lightning--;
+        allegro_message("Player 2 went the furthest and was the fastest. He wins a ticket ");
     }
-    if (temps_j1 == temps_j2 && temps_j1 != 9999999999){
-        Player->NbOfTickets++;
-        Player->ticket_j2++;
-        Player->Eclaire_j1++;
-        Player->Eclaire_j2++;
-        allegro_message("Les 2 joueurs ont le même temps. Ils gagnent tout les 2 un ticket");
-    }
-    if (temps_j1 == temps_j2 && temps_j1 == 9999999999){
-        Player->NbOfTickets--;
-        Player->ticket_j2--;
-        Player->Eclaire_j1--;
-        Player->Eclaire_j2--;
-        allegro_message("Les 2 joueurs sont sorti du terrain. Ils perdent tout les 2 un ticket");
+    if (Player1Time == Player2Time){
+        allegro_message("The players have done the same time, they don't lose or win any tickets.");
     }
 
+    //Destroying the variables to free some memory space
     destroy_bitmap(buffer);
     destroy_bitmap(background);
     destroy_bitmap(source_background);
-    destroy_bitmap(PlayerSwap);
 }
-*/
